@@ -6,7 +6,7 @@ node('GOL') {
         sh 'mvn clean package'
     }
     stage('postbuild') {
-        junit '**/TEST- *.xml'
+        junit '**/TEST-*.xml'
         archive '**/*.war'
     }
 }
