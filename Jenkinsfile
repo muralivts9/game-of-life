@@ -1,8 +1,9 @@
 pipeline {
-    agent { label 'GOL'}
+    agent {label 'GOL'}
     stages {
         stage ('scm') {
             steps {
+                
                 git branch: 'master' url: 'https://github.com/muralivts9/game-of-life.git'
             }
         }
