@@ -1,13 +1,13 @@
 pipeline {
-    agent {label 'GOL'}
+    agent { label 'GOL'}
     stages {
-        stage ('scm') {
+        stage('scm') {
             steps {
-                
-                git branch: 'master' url: 'https://github.com/muralivts9/game-of-life.git'
+                 git branch: 'master' url: 'https://github.com/muralivts9/game-of-life.git'
             }
+           
         }
-        stage ('build') {
+        stage('build') {
             steps {
                 sh 'mvn package'
             }
@@ -16,9 +16,8 @@ pipeline {
     }
     post {
         success {
-            archive '**/*.war'
-            junit '**/TEST-*.xml'
+         archive '**/*.war'
+         junit '**/TEST-*.xml'   
         }
-        
     }
 }
