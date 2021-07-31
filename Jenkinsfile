@@ -5,12 +5,12 @@ pipeline {
         pollSCM ('* * * * *')
     }
     parameters {
-        string(name: 'BRANCH', defaultValue: 'master', description: 'build with master')
+        string(name: 'BRANCH', defaultValue: 'master', description: 'Branch to build')
     }
     stages {
         stage('scm') {
             steps {
-                 git branch: "${perams.BRANCH}", url: 'https://github.com/muralivts9/game-of-life.git'
+                 git branch: "${params.BRANCH}", url: 'https://github.com/muralivts9/game-of-life.git'
             }
            
         }
