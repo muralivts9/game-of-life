@@ -16,6 +16,7 @@ pipeline {
         }
         stage('build') {
             steps {
+                echo env.GIT_URL
                 sh 'mvn package'
             }
         }
