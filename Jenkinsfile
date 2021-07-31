@@ -4,10 +4,13 @@ pipeline {
         cron ('H * * * *')
         pollSCM ('* * * * *')
     }
+    parameters {
+        string(name: 'BRANCH', defaultValue: 'master', description: 'build with master')
+    }
     stages {
         stage('scm') {
             steps {
-                 git branch: 'master', url: 'https://github.com/muralivts9/game-of-life.git'
+                 git branch: "${perams.BRANCH}", url: 'https://github.com/muralivts9/game-of-life.git'
             }
            
         }
