@@ -14,6 +14,7 @@ pipeline {
     stages {
         stage('scm') {
             steps {
+                mail subject: 'BUILD Strated'+env.BUILD_ID, to: 'murali.cool999@gmail.com', from: 'murali.chirumamilla99@gmail.com', body: 'empty'
                  git branch: "${params.BRANCH}", url: 'https://github.com/muralivts9/game-of-life.git'
             }
            
@@ -29,7 +30,11 @@ pipeline {
     post {
         success {
          archive '**/*.war'
-         junit '**/TEST-*.xml'   
+         junit '**/TEST-*.xml'
+         mail subject: 'BUILD Completed Successfull'+env.BUILD_ID, to: 'murali.cool999@gmail.com', from: 'murali.chirumamilla99@gmail.com', body: 'empty'   
+        }
+        failure {
+            mail subject: 'BUILD Faild'+env.BUILD_ID+ 'URL is'+env.BUILD_URL, to: 'murali.cool999@gmail.com', from: 'murali.chirumamilla99@gmail.com', body: 'empty'
         }
     }
 }
