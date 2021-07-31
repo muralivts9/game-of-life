@@ -7,6 +7,10 @@ pipeline {
     parameters {
         string(name: 'BRANCH', defaultValue: 'master', description: 'Branch to build')
     }
+    options {
+        timeout(time: 1, unit: 'HOURS')
+        retry(2)
+    }
     stages {
         stage('scm') {
             steps {
