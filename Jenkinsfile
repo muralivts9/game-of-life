@@ -21,8 +21,9 @@ pipeline {
            
         }
         stage ('build the packages') {
-	      sh 'mvn package'
-
+            steps {
+	           sh 'mvn package'
+            }  
         }
         stage('build') {
             steps {
