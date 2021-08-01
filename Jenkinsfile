@@ -24,12 +24,7 @@ pipeline {
 	      sh 'mvn package'
         }
 
-        stage('build') {
-            steps {
-                echo env.GIT_URL
-                sh "mvn ${params.GOAL}"
-            }
-        }
+        
         stage('sonar analysis') {
             steps {
                 withSonarQubeEnv('SONAR-8.9') {
