@@ -22,17 +22,17 @@ pipeline {
         }
         stage ('build the packages') {
 	      sh 'mvn package'
-          
+
+        }
+        stage('build') {
+            steps {
+                echo env.GIT_URL
+                sh "mvn ${params.GOAL}"
+            }
         }
 
         
-        stage('sonar analysis') {
-            steps {
-                withSonarQubeEnv('SONAR-8.9LTS') {
-                    sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar'
-                }
-            }
-        }
+        
     }
     post {
         success {
