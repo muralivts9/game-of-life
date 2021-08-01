@@ -30,7 +30,13 @@ pipeline {
                 sh "mvn ${params.GOAL}"
             }
         }
-        
+        stage('sonar analysis') {
+            steps {
+                withSonarQubeEnv('SONAR-8.9') {
+                    sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar'
+                }
+            }
+        }
     }
     post {
         success {
